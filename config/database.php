@@ -148,4 +148,13 @@ return [
 
     ],
 
+    'cassandra' => [
+        'driver' => 'cassandra',
+        'hosts' => [
+            env('CASSANDRA_HOST', 'localhost')
+        ],
+        'port' => env('CASSANDRA_PORT', 9042),
+        'keyspace' => env('CASSANDRA_KEYSPACE', ''),
+    ],
+
 ];
