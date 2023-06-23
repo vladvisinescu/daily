@@ -19,7 +19,7 @@ class UserFactory extends Factory
     {
         $name = fake()->name();
 
-        $email = Str::of($name)->slug('.')->append('@example.net');
+        $email = Str::of($name)->slug('.')->append('@example.net')->toString();
 
         return [
             'name' => $name,
