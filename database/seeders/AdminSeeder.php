@@ -4,6 +4,9 @@ namespace Database\Seeders;
 
 use App\Models\Habit;
 use App\Models\HabitEntry;
+use App\Models\ListEntry;
+use App\Models\ListItem;
+use App\Models\Plan;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -32,6 +35,21 @@ class AdminSeeder extends Seeder
                     'habit_id' => $habit->id
                 ]);
             }
+        });
+
+        Plan::factory(5)->create(['user_id' => $admin->id])->each(function (Plan $plan) use ($admin) {
+            ListItem::factory(mt_rand(2, 10))->create(['plan_id' => $plan->id, 'user_id' => $admin->id])->each(function(ListItem $listItem) {
+                for ($x = 0; $x < 10; $x++) {
+                    if (mt_rand(0, 1)) {
+                        continue;
+                    }
+
+                    ListEntry::create([
+                        'created_at' => now()->subDays($x),
+                        'list_item_id' => $listItem->id
+                    ]);
+                }
+            });
         });
     }
 }

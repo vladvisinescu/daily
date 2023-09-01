@@ -20,6 +20,7 @@ class HabitsController extends Controller
         return response()->json([
             'habits' => Habit::where('user_id', auth()->user()->id)
                 ->withCount('recentEntries')
+                ->withCount('todayEntries')
                 ->with(['recentEntries' => function ($query) {
                     return $query->select(['id', 'created_at', 'habit_id']);
                 }])
@@ -44,6 +45,7 @@ class HabitsController extends Controller
         return $habit
             ->refresh()
             ->loadCount('recentEntries')
+            ->loadCount('todayEntries')
             ->load(['recentEntries' => function ($query) {
                 return $query->select(['id', 'created_at', 'habit_id']);
             }])

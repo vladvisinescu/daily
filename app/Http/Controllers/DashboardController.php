@@ -15,6 +15,7 @@ class DashboardController extends Controller
         return Inertia::render('Dashboard', [
             'habits' => Habit::where('user_id', auth()->user()->id)
                 ->withCount('recentEntries')
+                ->withCount('todayEntries')
                 ->with(['recentEntries' => function ($query) {
                     return $query->select(['id', 'created_at', 'habit_id']);
                 }])

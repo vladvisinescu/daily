@@ -31,9 +31,15 @@ export default function HabitRow({ data }) {
                     <div>
                         <span className={'text-lg'}>{habit.title}</span>
                     </div>
-                    <div>
-                        <span className={'text-sm text-gray-400'}>Times tracked: </span>
-                        <span className={'text-sm text-gray-500'}>{ habit.recent_entries_count }</span>
+                    <div className={'flex flex-col'}>
+                        <div>
+                            <span className={'text-sm text-gray-400'}>Times tracked: </span>
+                            <span className={'text-sm text-gray-500'}>{ habit.recent_entries_count }</span>
+                        </div>
+                        <div>
+                            <span className={'text-sm text-gray-400'}>Tracked today: </span>
+                            <span className={'text-sm text-gray-500'}>{ habit.today_entries_count }</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -52,14 +58,14 @@ export default function HabitRow({ data }) {
                 </SecondaryButton>
             </div>
         </div>
-        {/*{drawerOpen && (*/}
-        {/*    <div className={'rounded-lg bg-white px-3 shadow-md'}>*/}
-        {/*        <div className={'py-4'}>*/}
-        {/*            <div className="flex items-center">*/}
-        {/*                <HabitCalendar entries={habit.recent_entries} />*/}
-        {/*            </div>*/}
-        {/*        </div>*/}
-        {/*    </div>*/}
-        {/*)}*/}
+        {drawerOpen && (
+            <div className={'rounded-lg bg-white px-3 shadow-md'}>
+                <div className={'py-4'}>
+                    <div className="flex items-center">
+                        <HabitCalendar entries={habit.recent_entries} />
+                    </div>
+                </div>
+            </div>
+        )}
     </div>
 }

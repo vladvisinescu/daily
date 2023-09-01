@@ -38,4 +38,11 @@ class Habit extends Model
         return $this->hasMany(HabitEntry::class, 'habit_id', 'id')
             ->where('created_at', '>', $startDate);
     }
+
+    public function todayEntries(): HasMany
+    {
+        return $this->hasMany(HabitEntry::class, 'habit_id', 'id')
+            ->where('created_at', '>=', today()->startOfDay())
+            ->where('created_at', '<=', today()->endOfDay());
+    }
 }

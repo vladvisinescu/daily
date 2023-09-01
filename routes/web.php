@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HabitsController;
+use App\Http\Controllers\PlansController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Habit;
 use Illuminate\Foundation\Application;
@@ -39,6 +40,8 @@ Route::middleware('auth')->group(function () {
         Route::post('/', [HabitsController::class, 'store']);
         Route::post('/{habit}/track', [HabitsController::class, 'track']);
     });
+
+    Route::resource('plans', PlansController::class);
 });
 
 require __DIR__.'/auth.php';
